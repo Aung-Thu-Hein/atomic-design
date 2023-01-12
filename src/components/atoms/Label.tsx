@@ -14,6 +14,7 @@ const Label : FC<Props> = ({name, label}) => {
 }
 
 const lableStyle = css({
+  width: "200px",
   textAlign: "left",
   fontSize: "17px",
   fontWeight: 500,
