@@ -8,10 +8,11 @@ import { InputTextField } from '../molecules/InputTextField';
 import * as Yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, FormProvider, } from "react-hook-form"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Btn from '../molecules/Btn';
 import Gender from '../molecules/Gender';
 import { UserRole } from '../molecules/UserRole';
+import { useNavigate } from "react-router-dom";
 
 type FormValues = {
   userId: string;
@@ -20,7 +21,7 @@ type FormValues = {
   email: string;
   address: string;
   birthday: Date;
-  age: number;
+  age: string | number;
   userRole: string;
 }
 
@@ -66,11 +67,57 @@ const UserInfoForm = () => {
     setValue,
     getValues,
     reset,
+    watch,
     formState: { errors } } = methods
 
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const bd = watch('birthday');
 
   const onSubmit = () => setIsDisabled(true);
+
+  const handleRegister = () => {
+    const formData: FormValues = getValues();
+
+    let data: any[] = [];
+    let newData: any[] = [];
+
+    const dataString = localStorage.getItem('Form Data');
+    if (dataString) {
+      data = JSON.parse(dataString)
+      newData = [...data, formData]
+      localStorage.setItem("Form Data", JSON.stringify(newData));
+    } else {
+      localStorage.setItem("Form Data", JSON.stringify([formData]));
+    }
+    navigate('/usertable')
+  }
+
+  const calculateAge = () => {
+
+    var today = new Date();
+    var birthDate = new Date(bd);
+    var age_now = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age_now--;
+    }
+    let age = age_now ? age_now : "";
+    setValue('age', age);
+  }
+
+  useEffect(() => {
+    calculateAge();
+  }, [bd]);
+
+  useEffect(() => {
+    let data: any[] = [];
+    const dataString: string | null = localStorage.getItem('Form Data');
+    if (dataString) {
+      data = JSON.parse(dataString);
+      setValue('userId', 'ID-' + `${(data.length + 1).toString().padStart(4, '0')}`)
+    } else setValue('userId', 'ID-0001')
+  }, []);
 
   return (
     <FormProvider {...methods}>
@@ -149,7 +196,7 @@ const UserInfoForm = () => {
               <Btn
                 type="button"
                 name="Clear"
-                handleClick={() => console.log("clicked!!")}
+                handleClick={() => reset()}
               />
           }
           {
@@ -157,7 +204,7 @@ const UserInfoForm = () => {
             <Btn
               type="button"
               name="Register"
-              handleClick={() => reset()}
+              handleClick={handleRegister}
             />
             :
             <Btn
@@ -167,7 +214,6 @@ const UserInfoForm = () => {
             />
           }
         </div>
-
     </form>
     </FormProvider >
   )

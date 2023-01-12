@@ -1,9 +1,15 @@
-import UserInfoForm from './components/pages/UserInfoForm'
+import { Routes, Route, } from 'react-router-dom';
+import UserTable from '@/components/pages/UserTable';
+import UserInfoForm from '@/components/pages/UserInfoForm'
 
 function App() {
 
   return (
-    <UserInfoForm/>
+    <Routes>
+        <Route path='/' element={<UserInfoForm/>} />
+        <Route path='usertable' element={ <UserTable/>} />
+    </Routes>
+    
   )
 }
 
