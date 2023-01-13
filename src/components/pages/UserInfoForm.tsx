@@ -1,18 +1,18 @@
-/** @jsxImportSource @emotion/react */;
+//react, useForm, react-router and yup
+import { useForm, FormProvider, } from "react-hook-form"
+import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import * as Yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+
+//emotion
 import { css } from '@emotion/react';
 
 //molecules
-import { InputTextField } from '../molecules/InputTextField';
-//import ConfirmBtn from '../molecules/ConfirmBtn';
-
-import * as Yup from 'yup';
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, FormProvider, } from "react-hook-form"
-import { useState, useEffect } from 'react';
-import Btn from '../molecules/Btn';
-import Gender from '../molecules/Gender';
-import { UserRole } from '../molecules/UserRole';
-import { useNavigate } from "react-router-dom";
+import { InputTextField } from '@/components/molecules/InputTextField';
+import Btn from '@/components/molecules/Btn';
+import Gender from '@/components/molecules/Gender';
+import { UserRole } from '@/components/molecules/UserRole';
 
 type FormValues = {
   userId: string;
@@ -31,7 +31,8 @@ const schema = Yup.object().shape({
     .required("User name is required"),
   gender: Yup
     .string()
-    .required("gender is required"),
+    .required("Gender is required")
+    .nullable(),
   email: Yup
     .string()
     .email("Invalid email format")
@@ -42,23 +43,10 @@ const schema = Yup.object().shape({
   birthday: Yup
     .string()
     .required("Birthday is required"),
-  age: Yup
-    .string()
-    .required("Age is required"),
   userRole: Yup
     .string()
     .required("User role is required"),
-});
-
-
-
-// type SubmitHandler<TFieldValues extends FieldValues> = (
-//   data: TFieldValues, event?: React.BaseSyntheticEvent
-// ) => any | Promise<any>
-
-// type Props = ComponentProps<typeof InputTextField> & ComponentProps<typeof ConfirmBtn>
-
-// type Props = ComponentProps<typeof UserRole> 
+})
 
 const UserInfoForm = () => {
   const methods = useForm<FormValues>({ resolver: yupResolver(schema), });
@@ -129,6 +117,7 @@ const UserInfoForm = () => {
             type="text"
             disabled={isDisabled}
           />
+          <p></p>
         </div>
         <div css={inputWrapper}>
           <InputTextField
@@ -162,7 +151,7 @@ const UserInfoForm = () => {
           <p css={errorStyle}>{errors.address?.message}</p>
         </div>
         <div css={birthdayWrapper}>
-          <div css={inputWrapper}>
+          <div css={[inputWrapper, { marginRight: "150px" }]}>
             <InputTextField
               label="Birthday"
               name="birthday"
@@ -178,7 +167,7 @@ const UserInfoForm = () => {
               type="text"
               disabled={isDisabled}
             />
-            <p css={errorStyle}>{errors.age?.message}</p></div>
+          </div>
         </div>
         <div css={inputWrapper}>
           <UserRole label="User Role" {...register("userRole")} disabled={isDisabled} />
@@ -201,20 +190,19 @@ const UserInfoForm = () => {
           }
           {
             isDisabled ?
-            <Btn
-              type="button"
-              name="Register"
-              handleClick={handleRegister}
-            />
-            :
-            <Btn
-              type="submit"
-              name="Confirm"
-              handleClick={() => console.log("clicked!!")}
-            />
+              <Btn
+                type="button"
+                name="Register"
+                handleClick={handleRegister}
+              />
+              :
+              <Btn
+                type="submit"
+                name="Confirm"
+              />
           }
         </div>
-    </form>
+      </form>
     </FormProvider >
   )
 }
@@ -228,13 +216,12 @@ const errorStyle = css({
 const inputWrapper = css({
   display: "flex",
   flexDirection: "column",
-  paddingBottom: "20px",
+
 });
 
 const birthdayWrapper = css({
   display: "flex",
   flexDirection: "row",
-  paddingBottom: "20px",
 });
 
 const buttonWrapper = css({
