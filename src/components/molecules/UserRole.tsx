@@ -1,17 +1,27 @@
 import Label from '@/components/atoms/Label';
-import {css} from '@emotion/react';
+import { css } from '@emotion/react';
+import { ComponentProps, forwardRef, ForwardedRef } from 'react'
+import { useFormContext } from 'react-hook-form'
 
-import {ComponentProps, FC} from 'react'
+type Props = ComponentProps<typeof Label> & {
+  disabled: boolean
+}
 
-// type Props = ComponentProps<typeof Label> & {
-//   value: string
-// }
+const UserRoleBox = (
+  props: Props,
+  ref: ForwardedRef<HTMLSelectElement>
+) => {
+  const { register } = useFormContext();
 
-const UserRole : FC = () => {
-  return(
-    <div>
-      <Label name="userRole" label="User Role"/>
-      <select name="userRole" css={baseInputStyle}>
+  return (
+    <div css={inputFieldStyle}>
+      <Label name={props.name} label={props.label} />
+      <select
+        css={baseInputStyle}
+        {...register(props.name)}
+        disabled={props.disabled}
+      >
+        <option></option>
         <option value="Administrator">Administrator</option>
         <option value="User">User</option>
         <option value="Guest">Guest</option>
@@ -20,11 +30,21 @@ const UserRole : FC = () => {
   )
 }
 
+const inputFieldStyle = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 10px;
+  padding: 10px;
+  width: 100%;
+`;
+
 const baseInputStyle = css({
+  width: "190px",
   padding: "8px",
   borderWidth: "1px",
   borderColor: "#5e5858",
   borderRadius: "5px",
 });
 
-export default UserRole;
+export const UserRole = forwardRef(UserRoleBox);

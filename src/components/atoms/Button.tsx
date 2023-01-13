@@ -1,17 +1,16 @@
-
 import { FC } from 'react';
 import { css } from '@emotion/react';
 
 type Props = {
   type?: "button" | "submit"
-  handleClick: any
+  handleClick?: any
   name: string
 }
 
-const Button : FC<Props> = ({type, handleClick, name}) => {
-  return(
-    <button 
-      type={type} 
+const Button: FC<Props> = ({ type, handleClick, name }) => {
+  return (
+    <button
+      type={type}
       onClick={handleClick}
       css={buttonStyle}
     >

@@ -1,5 +1,5 @@
 import Button from '@/components/atoms/Button'
-import { FC, ComponentProps, forwardRef, ForwardedRef } from 'react'
+import { FC, ComponentProps } from 'react'
 
 type Props = ComponentProps<typeof Button>
 
