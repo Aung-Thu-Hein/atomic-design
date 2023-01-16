@@ -10,7 +10,8 @@ import { css } from '@emotion/react';
 
 //molecules
 import { InputTextField } from '@/components/molecules/InputTextField';
-import Btn from '@/components/molecules/Btn';
+// import Btn from '@/components/molecules/Btn';
+import Button from '@/components/atoms/Button';
 import Gender from '@/components/molecules/Gender';
 import { UserRole } from '@/components/molecules/UserRole';
 
@@ -176,13 +177,13 @@ const UserInfoForm = () => {
         <div css={buttonWrapper}>
           {
             isDisabled ?
-              <Btn
+              <Button
                 type="button"
                 name="Back"
                 handleClick={() => setIsDisabled(false)}
               />
               :
-              <Btn
+              <Button
                 type="button"
                 name="Clear"
                 handleClick={() => reset()}
@@ -190,13 +191,13 @@ const UserInfoForm = () => {
           }
           {
             isDisabled ?
-              <Btn
+              <Button
                 type="button"
                 name="Register"
                 handleClick={handleRegister}
               />
               :
-              <Btn
+              <Button
                 type="submit"
                 name="Confirm"
               />

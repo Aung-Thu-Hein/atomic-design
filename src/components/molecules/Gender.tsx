@@ -18,19 +18,20 @@ const Gender = (props: any) => {
   )
 }
 
-const inputFieldStyle = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 10px 0px 0px 20px;
-  width: 100%;
-`;
+const inputFieldStyle = css({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "flex-start",
+  paddingTop: "10px",
+  paddingLeft: "20px",
+  width: "100%",
+})
 
-const genderLabel = css`
-  margin-right: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #5e5858;
-`
+const genderLabel = css({
+  marginRight: "10px",
+  fontSize: "15px",
+  fontWeight: 500,
+  color: "#5e5858",
+})
 
 export default Gender;

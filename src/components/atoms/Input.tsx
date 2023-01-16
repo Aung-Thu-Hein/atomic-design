@@ -14,7 +14,7 @@ const InnerTextField = (
   ref: React.ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
 ) => {
 
-  const { type, ...inputProps } = props
+  const { placeholder, type, ...inputProps } = props
 
   return (
     type === "textarea" ?

@@ -1,11 +1,10 @@
-import Table from 'react-bootstrap/Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { css } from '@emotion/react'
 
 const TableView = (props: any) => {
 
   return (
     <>
-      <Table striped>
+      <table css={tableStyle}>
         <thead>
           <tr>
             <th>User ID</th>
@@ -22,7 +21,7 @@ const TableView = (props: any) => {
             props.pageData.map((data: any, index: any) => {
               return (
                 <tr key={index}>
-                  <td>{data.userId}</td>
+                  <td >{data.userId}</td>
                   <td>{data.userName}</td>
                   <td>{data.gender}</td>
                   <td>{data.email}</td>
@@ -34,9 +33,30 @@ const TableView = (props: any) => {
             })
           }
         </tbody>
-      </Table>
+      </table>
     </>
   )
 }
+
+const tableStyle = css({
+  borderCollapse: "collapse",
+  borderSpacing: 0,
+  width: "100%",
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderColor: "#ddd",
+  textAlign: "center",
+  marginBottom: "10px",
+  'tr:nth-of-type(even)': {
+    backgroundColor: '#f2f2f2',
+  },
+  'th': {
+    padding: "12px",
+    backgroundColor: '#f2f2f2',
+  },
+  'td': {
+    padding: "12px",
+  }
+});
 
 export default TableView;

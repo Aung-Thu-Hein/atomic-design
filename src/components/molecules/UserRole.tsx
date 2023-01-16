@@ -30,14 +30,14 @@ const UserRoleBox = (
   )
 }
 
-const inputFieldStyle = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-left: 10px;
-  padding: 10px;
-  width: 100%;
-`;
+const inputFieldStyle = css({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "flex-start",
+  marginLeft: "10px",
+  padding: "10px",
+  width: "100%",
+})
 
 const baseInputStyle = css({
   width: "190px",

@@ -7,7 +7,7 @@ type Props = {
   name: string
 }
 
-const Button: FC<Props> = ({ type, handleClick, name }) => {
+const Button: FC<Props> = ({ type, handleClick, name,}) => {
   return (
     <button
       type={type}
@@ -19,14 +19,14 @@ const Button: FC<Props> = ({ type, handleClick, name }) => {
   )
 }
 
-const buttonStyle = css`
-  padding: 10px 15px;
-  background-color: #1a628f;
-  border-width: 1px;
-  border-radius: 4px;
-  font-size: 17px;
-  font-weight: 500;
-  color: #000000;
-`;
+const buttonStyle = css({
+  padding: "12px",
+  backgroundColor: "#1a628f",
+  borderWidth: "1px",
+  borderRadius: "4px",
+  fontSize: "17px",
+  fontWeight: 500,
+  color: "#000000",
+})
 
 export default Button;

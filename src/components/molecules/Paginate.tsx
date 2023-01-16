@@ -1,14 +1,17 @@
-import {FC, ComponentProps} from 'react';
+import { FC, ComponentProps } from 'react';
 import Pagination from 'react-paginate';
 import TableView from './TableView';
+import { css } from '@emotion/react'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-type Props = ComponentProps<typeof TableView> 
+type Props = ComponentProps<typeof TableView>
 
-const Paginate: FC<Props> = (props : Props)  => {
+const Paginate: FC<Props> = (props: Props) => {
 
-  return(
-    <Pagination
-        pageCount={Math.ceil(props.formData.length / props.perPage)} // total number of pages
+  return (
+    <div css={paginate}>
+      <Pagination
+        pageCount={Math.ceil(props.formData.length / props.perPage)}
         onPageChange={props.handlePageChange}
         pageClassName="page-item"
         pageLinkClassName="page-link"
@@ -22,7 +25,15 @@ const Paginate: FC<Props> = (props : Props)  => {
         containerClassName="pagination"
         activeClassName="active"
       />
+    </div>
+
   )
 }
+
+const paginate= css({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+});
 
 export default Paginate;

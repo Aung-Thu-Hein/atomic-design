@@ -44,12 +44,13 @@ const InputText = (
   )
 }
 
-const inputFieldStyle = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 10px 0px 0px 20px;
-  width: 100%;
-`;
+const inputFieldStyle = css({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "flex-start",
+  paddingTop: "10px",
+  paddingLeft: "20px",
+  width: "100%",
+});
 
 export const InputTextField = forwardRef(InputText)

@@ -33,7 +33,7 @@ const UserTable = () => {
   const [query, setQuery] = useState<string>("");
   const [formData, setFormData] = useState<User[]>([]);
   const [page, setPage] = useState<number>(0);
-  const [perPage, setPerPage] = useState<number>(10);
+  const [perPage, setPerPage] = useState<number>(5);
 
   const searchName = search(query, formData);
 
