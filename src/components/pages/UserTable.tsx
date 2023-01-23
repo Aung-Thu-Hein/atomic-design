@@ -24,10 +24,7 @@ const UserTable = () => {
   const [formData, setFormData] = useState<User[]>([]);
   const [page, setPage] = useState<number>(0);
   const [perPage, setPerPage] = useState<number>(5);
-  const [filterItem, setFilterItem] =  useState<User[]>(formData);
-  const [pageCount, setPageCount] = useState<number>(Math.ceil(formData.length / perPage));
-
-  //const searchName = search(query);
+  const [pageCount, setPageCount] = useState<number>(0);
 
   const pageData = formData.slice(page * perPage, (page + 1) * perPage);
 
@@ -35,15 +32,16 @@ const UserTable = () => {
     setPage(page.selected);
   };
 
-  function search(e: any): any {
-    
+  const search = (e: any): any => {
+
     const username = e.target.value;
     setQuery(username);
-
-      let results = formData.filter(name => name.userName.includes(username));
-      setFilterItem(results);
-      setPageCount(Math.ceil(filterItem.length / perPage));
-      setPage(0);
+    
+    let results = formData.filter(name => name.userName.includes(username));
+    setFormData(results);
+    
+    setPageCount(Math.ceil(formData.length / perPage));
+    setPage(0);
   }
 
   useEffect(() => {
@@ -59,7 +57,9 @@ const UserTable = () => {
         else return 0
       })
       console.log("Data: ", data);
-      setFormData(data)
+      setFormData(data);
+      setPageCount(Math.ceil(data.length / perPage));
+      console.log("PC::", pageCount);
     }
   }, [])
 
@@ -68,10 +68,10 @@ const UserTable = () => {
       <Search search={search} />
       <TableView pageData={pageData} />
       <Paginate
-        pageCount={pageCount}
+        PageCount={pageCount}
         handlePageChange={handlePageChange}
-        //formData={page}
-        //perPage={perPage}
+      //formData={page}
+      //perPage={perPage}
       />
       <Navigate />
     </>
@@ -104,6 +104,17 @@ export default UserTable;
 // const UserTable = () => {
 
 //   const [formData, setFormData] = useState<User[]>([]);
+//   const [itemOffset, setItemOffset] = useState<number>(0);
+//   const [itemsPerPage, setItemsPerPage] = useState<number>(5);
+
+//   const endOffset = itemOffset + itemsPerPage;
+//   const currentItems = formData.slice(itemOffset, endOffset);
+//   const pageCount = Math.ceil(formData.length/itemsPerPage);
+
+//   const handlePageClick = (e : any) => {
+//     const newOffset = (e.selected * itemsPerPage) % formData.length;
+//     setItemOffset(newOffset);
+//   }
 
 //   useEffect(() => {
 //     let data: any[] = [];
@@ -124,7 +135,8 @@ export default UserTable;
 
 //   return (
 //     <>
-//       <TableView pageData={formData} />
+//       <TableView pageData={currentItems} />
+//       <Paginate pageCount={pageCount} handlePageChange={handlePageClick} render={null} />
 //       <Navigate />
 //     </>
 //   )

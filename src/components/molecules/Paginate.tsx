@@ -25,6 +25,7 @@ const Paginate: FC<Props> = (props: Props) => {
         breakLinkClassName="page-link"
         containerClassName="pagination"
         activeClassName="active"
+        renderOnZeroPageCount={props.render}
       />
     </div>
 
