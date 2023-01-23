@@ -10,7 +10,6 @@ import { css } from '@emotion/react';
 
 //molecules
 import { InputTextField } from '@/components/molecules/InputTextField';
-// import Btn from '@/components/molecules/Btn';
 import Button from '@/components/atoms/Button';
 import Gender from '@/components/molecules/Gender';
 import { UserRole } from '@/components/molecules/UserRole';
