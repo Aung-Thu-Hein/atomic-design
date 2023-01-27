@@ -70,8 +70,6 @@ const UserTable = () => {
       <Paginate
         PageCount={pageCount}
         handlePageChange={handlePageChange}
-      //formData={page}
-      //perPage={perPage}
       />
       <Navigate />
     </>
@@ -79,67 +77,3 @@ const UserTable = () => {
 }
 
 export default UserTable;
-
-
-// //react
-// import { useEffect, useState } from 'react';
-
-// //molecules
-// import TableView from "@/components/molecules/TableView";
-// import Navigate from "@/components/molecules/Navigate";
-// import Paginate from "@/components/molecules/Paginate";
-// import Search from "@/components/molecules/Search";
-
-// type User = {
-//   userId: string;
-//   userName: string;
-//   gender: string;
-//   email: string;
-//   address: string;
-//   birthday: string;
-//   age: number;
-//   userRole: string;
-// }
-
-// const UserTable = () => {
-
-//   const [formData, setFormData] = useState<User[]>([]);
-//   const [itemOffset, setItemOffset] = useState<number>(0);
-//   const [itemsPerPage, setItemsPerPage] = useState<number>(5);
-
-//   const endOffset = itemOffset + itemsPerPage;
-//   const currentItems = formData.slice(itemOffset, endOffset);
-//   const pageCount = Math.ceil(formData.length/itemsPerPage);
-
-//   const handlePageClick = (e : any) => {
-//     const newOffset = (e.selected * itemsPerPage) % formData.length;
-//     setItemOffset(newOffset);
-//   }
-
-//   useEffect(() => {
-//     let data: any[] = [];
-//     const saved = localStorage.getItem("Form Data");
-//     if (saved) {
-//       data = JSON.parse(saved);
-//       data.sort((a, b) => {
-//         let usernameA: string = a.userName.toLowerCase()
-//         let usernameB: string = b.userName.toLowerCase()
-//         if (usernameA < usernameB) return -1
-//         else if (usernameA > usernameB) return 1
-//         else return 0
-//       })
-//       console.log("Data: ", data);
-//       setFormData(data)
-//     }
-//   }, [])
-
-//   return (
-//     <>
-//       <TableView pageData={currentItems} />
-//       <Paginate pageCount={pageCount} handlePageChange={handlePageClick} render={null} />
-//       <Navigate />
-//     </>
-//   )
-// }
-
-// export default UserTable;
