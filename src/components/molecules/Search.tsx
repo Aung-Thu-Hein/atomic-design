@@ -8,7 +8,6 @@ const Search = (props: any) => {
       type="text"
       placeholder="Search"
       name="query"
-      //onChange={props.setQuery} 
       onChange={props.search}
     />
     </div>
