@@ -1,31 +1,3 @@
-// // import Form from 'react-bootstrap/Form';
-// // import 'bootstrap/dist/css/bootstrap.min.css';
-// import { InputTextField } from '@/components/molecules/InputTextField'
-
-// const Search = (props : any) => {
-//   return (
-
-//     <InputTextField
-//             label="User Name"
-//             name="userName"
-//             type="text"
-//             placeholder='Search'
-//           />
-
-//     // <Form.Control
-//     //   style={{ width: 400 }}
-//     //   className='mx-auto mt-3'
-//     //   placeholder="Search"
-//     //   type="text"
-//     //   name="query"
-//     //   onChange={props.setQuery}
-//     // />
-//   )
-// }
-
-// export default Search;
-
-
 import {css} from '@emotion/react';
 
 const Search = (props: any) => {
@@ -36,7 +8,8 @@ const Search = (props: any) => {
       type="text"
       placeholder="Search"
       name="query"
-      onChange={props.setQuery} 
+      //onChange={props.setQuery} 
+      onChange={props.search}
     />
     </div>
     

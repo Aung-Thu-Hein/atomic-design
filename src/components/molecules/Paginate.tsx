@@ -11,7 +11,8 @@ const Paginate: FC<Props> = (props: Props) => {
   return (
     <div css={paginate}>
       <Pagination
-        pageCount={Math.ceil(props.formData.length / props.perPage)}
+        //pageCount={Math.ceil(props.formData.length / props.perPage)}
+        pageCount={props.pageCount}
         onPageChange={props.handlePageChange}
         pageClassName="page-item"
         pageLinkClassName="page-link"

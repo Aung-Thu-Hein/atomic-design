@@ -34,8 +34,8 @@ const inputFieldStyle = css({
   display: "flex",
   flexDirection: "row",
   justifyContent: "flex-start",
-  marginLeft: "10px",
-  padding: "10px",
+  marginTop: "10px",
+  paddingLeft: "20px",
   width: "100%",
 })
 
